@@ -1,3 +1,56 @@
+# Vaadin Testbench through Cucumber on a Vaadin Flow 24 application
+This is a quick proof-of-concept of executing Testbench from a Cucumber BDD scenario based heavily on the following 
+- https://cucumber.io/docs/installation/java/
+- https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-junit-platform-engine
+- https://github.com/cucumber/cucumber-java-skeleton/blob/main/maven/src/main/java/io/cucumber/skeleton/Belly.java
+
+To run the poc you will need a active Vaadin Pro or higher subscription or trial to run Testbench:
+https://vaadin.com/pricing
+
+To run the PoC: 
+
+``` 
+./mvnw clean package -DskipTests
+```
+
+We skip the tests initially as the browser tests require a running server (see other Testbench/Cucumber examples on how to start a Spring Boot project during tests phase)
+
+Then to start the servrer run: 
+```
+./mvnw spring-boot:run
+```
+
+In another terminal run:
+```
+./mvnw test
+```
+
+This should run both the UiUnitTest (Karibu) verions of the HelloWorld tests and the Selenium based browser test, you might need to setup Chrome for selenium tests. 
+
+In the console look for: 
+
+```
+Scenario: Enter name show notification                                   # com/example/application/hello.feature:2
+  Given On the HelloWorldView enter the name John it into the text field # com.example.application.StepDefinitionsUiUnitTests.I_have_a_name()
+  When I press the button                                                # com.example.application.StepDefinitionsUiUnitTests.i_press_the_button()
+  Then a Notification is shown                                           # com.example.application.StepDefinitionsUiUnitTests.a_notification_is_shown()
+
+..... 
+
+Scenario: Enter name show notification in browser                                     # com/example/application/hello2.feature:2
+  Given In a browser on the HelloWorldView enter the name John it into the text field # com.example.application.StepDefinitionsBrowserTest.in_a_browser_on_the_hello_world_view_enter_the_name_john_it_into_the_text_field()
+  When In a browser I press the button                                                # com.example.application.StepDefinitionsBrowserTest.in_a_browser_i_press_the_button()
+  Then In a browser a Notification is shown                                           # com.example.application.StepDefinitionsBrowserTest.in_a_browser_a_notification_is_shown()
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.574 s -- in com.example.application.RunCucumberTest
+```
+
+Additional documentation on Testbench: 
+- https://vaadin.com/docs/latest/flow/testing
+
+
+
+
+ ----- regular start.vaadin.com stuff below ----
 # Custom project from Hilla
 
 This project can be used as a starting point to create your own Hilla application with Spring Boot.
