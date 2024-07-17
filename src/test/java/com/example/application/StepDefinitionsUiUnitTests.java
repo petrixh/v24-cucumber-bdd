@@ -16,7 +16,7 @@ public class StepDefinitionsUiUnitTests extends UIUnitTest {
     public void I_have_a_name(){
         initVaadinEnvironment();
         this.view = navigate(HelloWorldView.class);
-        //TODO don't use public fields and field access.. just a test.. of a test..
+        //TODO don't use public fields for field access.. just a test.. of a test..
         test(view.name).setValue("John");
     }
 
@@ -32,7 +32,8 @@ public class StepDefinitionsUiUnitTests extends UIUnitTest {
         Notification notification = $(Notification.class).first();
         Assertions.assertEquals("Hello John", test(notification).getText());
 
-        //TODO probably cleanup needed as initVaadinEnvironment(); is a @BeforeEach.. there is probably @AfterEach...
+        //TODO is this enough cleanup?  initVaadinEnvironment(); is a @BeforeEach.. this is the @AfterEach...
+        cleanVaadinEnvironment();
     }
 
 }

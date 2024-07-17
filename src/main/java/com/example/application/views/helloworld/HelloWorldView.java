@@ -16,6 +16,7 @@ import com.vaadin.flow.router.RouteAlias;
 @RouteAlias(value = "")
 public class HelloWorldView extends HorizontalLayout {
 
+    //No not good practice to have public fields, getters would be better but being lazy...
     public TextField name;
     public Button sayHello;
 
